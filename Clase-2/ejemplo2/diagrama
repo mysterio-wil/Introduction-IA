@@ -1,0 +1,36 @@
+```mermaid
+flowchart TD
+    A([Inicio]) --> B[Tomar pedido]
+    B --> C{Pago = Anulado?}
+    C -- Sí --> D[Estado = Anulado, Metodo = None] --> H
+    C -- No --> E{Pago ≠ Aprobado?}
+    E -- Sí --> F[Estado = Pendiente, Metodo = None] --> H
+    E -- No --> G{Stock = No?}
+    G -- Sí --> I[Estado = Enviado, Metodo = None] --> H
+    G -- No --> J{Destino y Peso}
+    J -- Capital y Peso ≤ 5 --> K[Estado = Enviado, Metodo = Moto] --> H
+    J -- Interior y Peso ≤ 10 --> L[Estado = Enviado, Metodo = Correo] --> H
+    J -- Otro caso --> M[Estado = Enviado, Metodo = Expreso] --> H
+    H{¿Quedan pedidos?}
+    H -- Sí --> B
+    H -- No --> N([Fin])
+```
+
+
+```mermaid
+flowchart TD
+    A([Inicio]) --> B[Recorrer DataFrame fila por fila con apply]
+    B --> C{Pago = Anulado?}
+    C -- Sí --> D[Estado = Anulado, Metodo = None] --> H
+    C -- No --> E{Pago ≠ Aprobado?}
+    E -- Sí --> F[Estado = Pendiente, Metodo = None] --> H
+    E -- No --> G{Stock = No?}
+    G -- Sí --> I[Estado = Enviado, Metodo = None] --> H
+    G -- No --> J{Destino y Peso}
+    J -- Capital y Peso ≤ 5 --> K[Estado = Enviado, Metodo = Moto] --> H
+    J -- Interior y Peso ≤ 10 --> L[Estado = Enviado, Metodo = Correo] --> H
+    J -- Otro caso --> M[Estado = Enviado, Metodo = Expreso] --> H
+    H{¿Quedan filas por procesar?}
+    H -- Sí --> B
+    H -- No --> N([Fin])
+```

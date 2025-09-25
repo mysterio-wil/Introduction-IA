@@ -1,0 +1,45 @@
+Definir contadorAnulado, contadorPendiente, contadorEnviado, contadorMoto, contadorCorreo, contadorExpreso Como Entero
+contadorAnulado = 0
+contadorPendiente = 0
+contadorEnviado = 0
+contadorMoto = 0
+contadorCorreo = 0
+contadorExpreso = 0
+
+Para cada fila en tabla Hacer
+    Si Pago = "Anulado" Entonces
+        Estado = "Anulado"
+        contadorAnulado = contadorAnulado + 1
+    Sino
+        Si Pago <> "Aprobado" Entonces
+            Estado = "Pendiente"
+            contadorPendiente = contadorPendiente + 1
+        Sino
+            Si Stock = "No" Entonces
+                Estado = "Enviado"
+                contadorEnviado = contadorEnviado + 1
+            Sino
+                Estado = "Enviado"
+                Si Destino = "Capital" Y Peso <= 5 Entonces
+                    Metodo = "Moto"
+                    contadorMoto = contadorMoto + 1
+                Sino
+                    Si Destino = "Interior" Y Peso <= 10 Entonces
+                        Metodo = "Correo"
+                        contadorCorreo = contadorCorreo + 1
+                    Sino
+                        Metodo = "Expreso"
+                        contadorExpreso = contadorExpreso + 1
+                    FinSi
+                FinSi
+            FinSi
+        FinSi
+    FinSi
+FinPara
+
+Mostrar "Anulados:", contadorAnulado
+Mostrar "Pendientes:", contadorPendiente
+Mostrar "Enviados:", contadorEnviado
+Mostrar "Moto:", contadorMoto
+Mostrar "Correo:", contadorCorreo
+Mostrar "Expreso:", contadorExpreso

@@ -1,0 +1,16 @@
+Proceso Contar_Enviados
+    Definir contador Como Entero
+    Definir lista_enviados Como Lista
+    contador <- 0
+    lista_enviados <- []
+
+    Para cada fila en tabla Hacer
+        Si fila.Pago = "Aprobado" Y fila.Stock = "Si" Entonces
+            contador <- contador + 1
+            Agregar fila.ID a lista_enviados
+        FinSi
+    FinPara
+
+    Escribir "Cantidad de pedidos enviados: ", contador
+    Escribir "IDs enviados: ", lista_enviados
+FinProceso
